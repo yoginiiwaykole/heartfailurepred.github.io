@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html >
+<!--From https://codepen.io/frytyler/pen/EGdtg-->
+<head>
+  <meta charset="UTF-8">
+  <title>ML API</title>
+  <link href='https://fonts.googleapis.com/css?family=Pacifico' rel='stylesheet' type='text/css'>
+<link href='https://fonts.googleapis.com/css?family=Arimo' rel='stylesheet' type='text/css'>
+<link href='https://fonts.googleapis.com/css?family=Hind:300' rel='stylesheet' type='text/css'>
+<link href='https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300' rel='stylesheet' type='text/css'>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@300&display=swap" rel="stylesheet">
+<!--<link rel="stylesheet" href="project.css">-->
+    <style>
+        *{
+    margin: 0px;
+    padding: 0px;
+    font-family: 'Roboto Slab', serif;
+}
+
+/* .main{
+    display : flex;
+    justify-content: center;
+} */
+
+/* .discrip{
+    display : flex;
+    align-items: center;
+} */
+
+body{
+    background-image: linear-gradient(to right, #009933, #003311);
+    color : #EEEEEE;
+}
+
+input{
+    padding-left: 5px;
+    height : 25px;
+    border-radius: 5px;
+}
+
+.login{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.btn{
+    display: flex;
+    justify-content: center;
+}
+
+.form{
+    display : grid;
+    row-gap: 5px;
+    justify-content: center;
+    align-items: center;
+}
+
+#ecg:focus{
+    width: 30em;
+}
+
+button{
+    width: 50px;
+    border-radius: 5px;
+}
+button:hover{
+    background-color: #000;
+    color: #EEEEEE;
+    cursor: pointer;
+}
+    </style>
+
+</head>
+
+<body>
+  <div class = "main">
+ <div class="login">
+	<h1>Heart Failure Prediction</h1>
+
+     <!-- Main Input For Receiving Query to our ML -->
+    <form class = "form" action="{{ url_for('predict')}}"method="post">
+    	<input type="number" name="age" placeholder="age" required="required" />
+      <br>
+        <input type="text" name="sex" placeholder="sex (1- male, 0- female)" required="required" />
+        <br>
+		<input type="text" name="Depression" placeholder="Depression (1- yes, 0- no)" required="required" />
+    <br>
+		<input type="text" name="Smoking" placeholder="Smoking(1- yes, 0- no)" required="required" />
+    <br>
+        <input type="text" name="trestbps" placeholder="resting blood pressure" required="required" />
+        <br>
+        <input type="text" name="cholesterol" placeholder="cholesterol level" required="required" />
+        <br>
+        <input type="text" name="fasting blood sugar" placeholder="fasting blood sugar" required="required" />
+        <br>
+        <input type="text" id = "ecg" name="resting ecg" placeholder="resting ecg results (0=normal,1=wave abnormal,2=left ventricular hypertrophy)" required="required" />
+        <br>
+        <input type="text" name="thalach" placeholder="max heart rate achieved" required="required" />
+        <br>
+      <div class = "btn">
+        <button type="submit" class="btn btn-primary btn-block btn-large">Predict</button>
+      </div>
+        
+    </form>
+ <!-- </div>
+ <div class = "discrip">
+  <h2>BY- YOGINII WAYKOLE <br> and <br> YASHASVI KANATHEY</h2>
+ </div> -->
+{{ prediction_text }}
+</div>
+
+</body>
+</html>
